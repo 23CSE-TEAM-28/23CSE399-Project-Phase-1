@@ -107,6 +107,12 @@ S_t = \max(0, S_{t-1} + (e_t - \mu - k))
 \]
 If $S_t > h$, a local **"Drift Alert"** is triggered. This forces the client to perform an unscheduled local retraining of its personalized layers before participating in the next global aggregation round, preventing "drift-polluted" updates from degrading the global backbone.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{AWF.png}
+\caption{Adaptive Workflow Framework (AWF) illustrating the CUSUM-triggered drift adaptation logic within the federated hierarchy.}
+\end{figure}
+
 \textbf{Architecture Components (Technical Overview):}
 \begin{itemize}[noitemsep]
 \item \textbf{Shared Backbone (LSTM/Transformer):} Captures cyclic patterns (e.g., 24-hour periodicity) common to all houses.
@@ -115,7 +121,7 @@ If $S_t > h$, a local **"Drift Alert"** is triggered. This forces the client to 
 \end{itemize}
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-% 3. COMPARATIVE ANALYSIS & PRIVACY
+% 3. COMPARATIVE ANALYSIS \& PRIVACY
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 \section{Methodological Validation \& Privacy}
@@ -141,7 +147,7 @@ FedProp & Feature propagation/Regularization & Handles client noise & No drift a
 \end{itemize}
 
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-% 4. STUDY METHODOLOGY & STATUS
+% 4. STUDY METHODOLOGY \& STATUS
 % = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 
 \section{Evaluation Strategy \& Current Status}
@@ -150,12 +156,13 @@ FedProp & Feature propagation/Regularization & Handles client noise & No drift a
 
 \textbf{Current Status:}
 \begin{itemize}[noitemsep]
-\item Domain defined: Smart Grids.
-\item Mathematical formulation of CUSUM-FL integration completed.
-\item Differential Privacy mechanism conceptualized.
-\item Comparative study of FedAvg vs. FedPer initialized on public Pecan Street dataset.
+\item \textbf{Domain Focus:} Smart Grid Analytics via Pecan Street Dataset.
+\item \textbf{Version Control:} Repository active at \texttt{github.com/aksharsakhi/23CSE399-Project-Phase-1}.
+\item \textbf{Mathematical Model:} CUSUM logic integration completed.
+\item \textbf{Baselines:} Comparative study of FedAvg vs. FedPer initialized.
 \end{itemize}
 
+\nocite{*}
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
 
