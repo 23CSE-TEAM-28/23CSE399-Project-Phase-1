@@ -30,7 +30,7 @@
 
     \centering
     \vspace{0.2cm}
-    \includegraphics[width=2cm]{../Review 1/Team_28/logo_square.png} % Path relative to Review 2
+    \includegraphics[width=2cm]{logo_square.png} % Local path
     \vspace{0.2cm}
 
     {\Large \textbf{\textcolor{amritaMaroon}{Explainable Federated Analytics for Multivariate Time-Series Forecasting with Personalized Model Adaptation}}} \\
@@ -77,6 +77,32 @@
     \end{itemize}
 \end{frame}
 
+% --- LITERATURE SURVEY SUMMARY ---
+\begin{frame}{Literature Foundation (25 Papers)}
+    \small
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \textbf{Key Clusters Analyzed:}
+            \begin{itemize}
+                \item \textbf{FL Basics:} FedAvg (McMahan 2017) $\rightarrow$ Foundation.
+                \item \textbf{Personalization:} FedPer (Arivazhagan 2020) $\rightarrow$ Heterogeneity handling.
+                \item \textbf{Drift Detection:} CDA-FedAvg (Jothimurugesan 2022) $\rightarrow$ Adaptation.
+                \item \textbf{Explainability:} Attention-LSTM (La Rocca 2021) $\rightarrow$ XAI.
+            \end{itemize}
+            \vspace{0.2cm}
+            \begin{block}{The Research Gap}
+            No existing framework simultaneously integrates \textbf{Personalization + Active Drift Monitoring + Explainable Attention} for Multivariate Time-Series.
+            \end{block}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \centering
+            \includegraphics[width=0.8\linewidth]{logo_square.png}
+            \vspace{0.2cm}
+            \tiny \\ \textit{Full survey of 25 papers available in Review 1 documentation and Repository.}
+        \end{column}
+    \end{columns}
+\end{frame}
+
 % --- TARGETED PROBLEM STATEMENT ---
 \section{Problem Statement}
 \begin{frame}{Targeted Problem Statement: Smart Grids}
@@ -93,22 +119,32 @@
     \textbf{Objective:} Develop a Federated Personalized Drift-Aware Attention Framework (\textbf{FPDAF}) specifically for Smart Grid analytics that maintains local privacy while adapting to individual house behavior and shifting demand.
 \end{frame}
 
+% --- SYSTEM ARCHITECTURE ---
+\begin{frame}{System Architecture}
+    \centering
+    \includegraphics[width=0.8\linewidth, height=0.75\textheight, keepaspectratio]{SA_1.png}
+    \caption{\small Hybrid Global-Personalized Federated Architecture with Attention}
+\end{frame}
+
 % --- NOVELTY & DRIFT HANDLING ---
 \section{Technical Depth}
-\begin{frame}{Research Novelty: Drift-Aware Federated Learning}
-    \textbf{Why Drift Detection matters?} 
-    In heterogeneous grids, demand shifts are non-uniform. A global model update during a local heatwave is biased.
-
-    \vspace{0.2cm}
-    \textbf{CUSUM Integration:} 
-    Monitoring cumulative deviations in local loss $e_t$:
-    \[ S_t = \max(0, S_{t-1} + (e_t - \mu - k)) \]
-    
-    \begin{itemize}
-        \item \textbf{Trigger:} If $S_t > h$, local drift is identified.
-        \item \textbf{Response:} Local personalized layers are retrained *before* global sync.
-        \item \textbf{Benefit:} Protects the global backbone from being "polluted" by local distributional shifts.
-    \end{itemize}
+\begin{frame}{Technical Workflow: Drift Adaptation}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{CUSUM Trigger Mechanism:}
+            \[ S_t = \max(0, S_{t-1} + (e_t - \mu - k)) \]
+            \begin{itemize}
+                \item \textbf{Phase 1:} Local loss residual monitoring.
+                \item \textbf{Phase 2:} Threshold $h$ violation detection.
+                \item \textbf{Phase 3:} On-demand local head retraining.
+                \item \textbf{Phase 4:} Communication-efficient sync.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[width=1\linewidth]{AWF.png}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 % --- TECHNICAL OVERVIEW ---
@@ -160,13 +196,21 @@
 \begin{frame}{Current Status \& Evidence}
     \begin{itemize}
         \item \textbf{Git Repository:} Active version control with 20+ commits and structured reviews.
-        \item \textbf{Literature Analysis:} Automated summary of 25 papers completed.
-        \item \textbf{Mathematical Model:} Completed CUSUM logic integration for FL.
-        \item \textbf{Baseline Code:} Initial LSTM-FedAvg setup tested on energy datasets.
+        \item \textbf{Technical Proof:} Mathematical simulation of CUSUM-FL completed.
+        \item \textbf{Baseline Results:} Initial FedAvg benchmarks on Pecan Street dataset.
+        \item \textbf{Future Plan:} Integration of $\epsilon$-Differential Privacy noise layers.
     \end{itemize}
     \centering
     \vspace{0.3cm}
-    \textbf{Link:} [github.com/aksharsakhi/23CSE399-Project-Phase-1]
+    \textbf{Repo:} [github.com/aksharsakhi/23CSE399-Project-Phase-1]
+\end{frame}
+
+% --- REFERENCES ---
+\begin{frame}[allowframebreaks]{Selected References}
+    \tiny
+    \nocite{mcmahan2017,arivazhagan2020,jothimurugesan2022,larocca2021attention,kalakoti2025fedxai}
+    \bibliographystyle{IEEEtran}
+    \bibliography{ref}
 \end{frame}
 
 % --- THANK YOU ---
